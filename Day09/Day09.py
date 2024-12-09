@@ -1,7 +1,8 @@
+import copy
 def checkConsecutive(l):
     return sorted(l) == list(range(min(l), max(l)+1))
 
-input_file = open("input09.txt", "r")
+input_file = open(r"C:\Repos\aoc2024\Day09\input09.txt", "r")
 seq = input_file.read()
 
 diskmap = []
@@ -47,23 +48,11 @@ while(i < len(diskmap)-1):
         j+=1
     i+=1
 
-
-
-while(True):
-    # Check if gaps in dotlist
-    if checkConsecutive(dotlist):
-        break
-    # remove first element from dotlist
-    dot = dotlist.pop(0)
-    # Remove last eleement from pointlist
-    point = pointlist.pop(-1)
-    pointlist.append([dot, point[1]])
-    pointlist.sort()
+for i in range(len(pointlist)):
+    if pointlist[i][0] != i:
+        pointlist.insert(i, pointlist.pop())
+        pointlist[i][0] = i
     
-    # Place pointlist element into dotlist
-    dotlist.append(point[0])
-    dotlist.sort()
-
 result = 0
 
 # part 1 result
