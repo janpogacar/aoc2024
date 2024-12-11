@@ -13,23 +13,12 @@ def array_to_complex_defaultdict(matrix):
 
 def dfs(visited, graph, node):  #function for dfs 
     global result
-    if node not in visited:
+    if (node not in visited) or part2: # for part 2, just ignore previously visited nodes
         if graph[node]["value"] == '9':
             result += 1
         visited.add(node)
         for neighbour in graph[node]["nodes"]:
             dfs(visited, graph, neighbour)
-
-def bfs(graph, node): #function for BFS
-  global result
-  queue.append(node)
-
-  while queue:          # Creating loop to visit each node
-    m = queue.pop(0)
-    if graph[m]["value"] == '9':
-        result += 1 
-    for neighbour in graph[m]["nodes"]:
-        queue.append(neighbour)
 
 input_file = open(r"input10.txt", "r")
 maze = input_file.read().split("\n")
@@ -38,14 +27,14 @@ for i, x in enumerate(maze):
     maze[i] = list(x)
 
 start_locs = []
-maze_dict = array_to_complex_defaultdict(maze)
+maze_dict = array_to_complex_defaultdict(maze) # index array to dict
 
 for x in list(maze_dict.keys()): # Set up nodes for graph traversal
     for i,j in [[0,-1], [0,1], [-1,0], [1,0]]:
         if len(maze_dict[x+complex(i,j)]) != 0 and maze_dict[x+complex(i,j)]["value"].isnumeric() and maze_dict[x]["value"].isnumeric(): 
             if int(maze_dict[x+complex(i,j)]["value"]) == (int(maze_dict[x]["value"])+1):
                 maze_dict[x]["nodes"].append(x+complex(i,j)) 
-
+part2 = False
 result = 0
 for start_loc in start_locs:
     visited = set()
@@ -53,12 +42,9 @@ for start_loc in start_locs:
 
 print(result)
 
+part2 = True
 result = 0
 for start_loc in start_locs:
-    queue = []     #Initialize a queue
-    bfs(maze_dict,  start_loc)
+    dfs(visited, maze_dict, start_loc)
 
 print(result)
-
-print(0)
-
