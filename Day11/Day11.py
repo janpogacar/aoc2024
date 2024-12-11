@@ -2,16 +2,14 @@ import numpy as np
 from collections import defaultdict
 from copy import copy
 
-def flatten_comprehension(matrix):
-    return [item for row in matrix for item in row]
-
 # parse input data
 input_data = np.loadtxt("input11.txt", dtype="int")
 
 num_dict = defaultdict(int)
 
 for x in input_data:
-    num_dict[int(x)] = 1 
+    num_dict[int(x)] = 1
+     
 result = 0
 
 for cycle in range(75): # Change to 25 for part 1
@@ -33,6 +31,5 @@ for cycle in range(75): # Change to 25 for part 1
 
 for x in num_dict:
     result += num_dict[x]
-zero_data = [0]
 
 print(result)
