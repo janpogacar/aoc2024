@@ -18,7 +18,6 @@ for i, comb in enumerate(combs):
     input_dict[i]["px_p2"] = int(px)+10000000000000
     input_dict[i]["py_p2"] = int(py)+10000000000000
 
-test = [p for p in itertools.product(list(range(1,101)), repeat=2)]
 result = 0
 result2 = 0
 
@@ -36,9 +35,5 @@ for dict in input_dict:
     if (game["ax"]*n1 + game["bx"]*n2 == game["px_p2"]) and (game["ay"]*n1 + game["by"]*n2 == game["py_p2"]):
         result2 += (n1*3 + n2)
 
-
 print(int(result))
 print(int(result2))
-
-
-print(0)
