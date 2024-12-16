@@ -260,17 +260,7 @@ for dbg, move in enumerate(moves):
             pos_dict[rob_pos]["value"]  = "."
             rob_pos -= 1j
             pos_dict[rob_pos]["value"]  = "@"
-    # f = open("out.txt", "a")
-    # f.write(str(dbg) + "\n")
-    # f.write(str(move) + "\n")
-    # for x in pos_dict:
-    #     maze2[int(x.imag)][int(x.real)] = pos_dict[x]["value"]
-    # #f.write(str(maze2))
-    # f.write("\n")
-    # f.close()
-    # np.savetxt("out.txt", maze2, fmt="%s")
-         
-
+        
 result = 0
 # score calculation
 for x in pos_dict:
@@ -278,4 +268,3 @@ for x in pos_dict:
         result += (100*x.imag + x.real)
 
 print(result)
-print(0)
